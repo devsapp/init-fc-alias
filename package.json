@@ -1,0 +1,28 @@
+{
+  "name": "check-resource-fc",
+  "version": "0.0.1",
+  "description": "This is a component demo for Serverless Devs Tool ",
+  "autoInstall": false,
+  "homepage": "https://www.serverless-devs.com",
+  "author": "Serverless-Devs",
+  "contributors": [],
+  "license": "MIT",
+  "main": "./src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "Serverless",
+    "Framework",
+    "Serverless-Devs",
+    "Serverless-Tool",
+    "Function Compute"
+  ],
+  "scripts": {
+    "pub": "s cli registry publish"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@serverless-devs/core": "latest"
+  }
+}

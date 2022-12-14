@@ -1,0 +1,67 @@
+edition: 1.0.0
+name: component-test
+access: quanxi
+
+services:
+  component:
+    component: fc
+    actions:
+      pre-deploy:
+        - plugin: ${path(..)}
+          args:
+            step: pre
+      post-alias:
+        - plugin: ${path(..)} 
+          args:
+            step: post
+    props:
+      region: cn-shenzhen
+      service:
+        name: test-wss
+        description: 'hello world by serverless devs'
+      function:
+        name: start-fc-event-nodejs14
+        description: '23'
+        runtime: nodejs12
+        codeUri: ./code
+        handler: index.handler
+        memorySize: 256
+        timeout: 60
+        environmentVariables:
+          test: value3
+      triggers:
+        - name: port
+          type: http
+          qualifier: port
+          config:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - HEAD
+              - OPTIONS
+        - name: pre
+          type: http
+          qualifier: pre
+          config:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - HEAD
+              - OPTIONS
+        - name: latest
+          type: http
+          config:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - HEAD
+              - OPTIONS
