@@ -39,7 +39,7 @@ module.exports = async function (inputs, args) {
       functionName,
     });
 
-    logger.debug(`triggers updated: ${JSON.stringify(needDeployTrigger)}`);
+    logger.info(`triggers updated: ${JSON.stringify(needDeployTrigger)}`);
     _.set(inputs, 'props.triggers', needDeployTrigger);
   }
 
@@ -67,21 +67,7 @@ async function pre({
   fcClient,
   triggers,
   serviceName,
-  functionName,
 }) {
-  try {
-    // 如果不是新的函数 skip
-    await fcClient.getFunction(serviceName, functionName);
-    logger.debug('has function, skip init');
-    return triggers;
-  } catch (ex) {
-    // 如果不是 404 异常，则 skip
-    if (!_.get(ex, 'message', '').includes('failed with 404')) {
-      logger.debug(`get function error: ${ex.message}`);
-      return triggers;
-    }
-  }
-
   // 如果配置了别名，并且别名不存在。deploy 不部署
   const needDeployTrigger = [];
   for (const trigger of triggers) {

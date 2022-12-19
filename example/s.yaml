@@ -7,11 +7,15 @@ services:
     component: fc
     actions:
       pre-deploy:
+        - plugin: init-fc-alias
+          args:
+            step: pre
+      pre-info:
         - plugin: ${path(..)}
           args:
             step: pre
       post-alias:
-        - plugin: ${path(..)} 
+        - plugin: init-fc-alias
           args:
             step: post
     props:

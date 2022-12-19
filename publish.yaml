@@ -2,7 +2,7 @@ Type: Plugin
 Name: init-fc-alias
 Provider:
   - 阿里云
-Version: 0.0.2
+Version: 0.0.3
 Description: 初始化fc资源
 HomePage: https://github.com/devsapp/check-resource-fc
 Tags: #标签详情
