@@ -2,7 +2,8 @@ const core = require("@serverless-devs/core");
 const _ = core.lodash;
 const logger = new core.Logger('init-fc-alias');
 
-module.exports = async function (inputs, args) {
+module.exports = async function (originInputs, args) {
+  const inputs = _.get(originInputs, 'output', originInputs);
   const step = _.get(args, 'step');
   const isPreStrp = step === 'pre';
   const isPostStrp = step === 'post';
@@ -13,7 +14,7 @@ module.exports = async function (inputs, args) {
   // 验证 trigger 是否配置 qualifier，没有配置则 skip。
   const triggers = _.cloneDeep(_.get(inputs, 'props.triggers', []));
   if (_.isEmpty(triggers)) {
-    logger.debug('No triggers, skipp');
+    logger.debug('No triggers, skip');
     return inputs;
   }
 
